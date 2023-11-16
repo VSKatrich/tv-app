@@ -5,15 +5,13 @@ import style from "./Home.module.scss";
 
 const TrendingNow = ({ trendingNowFilms, onMovieClick }) => {
   const containerRef = useRef(null);
-  const { handleMouseDown, handleMouseUp, startX } =
+  const { handleMouseDown, handleMouseUp, wasScrolling } =
     useDraggingScroll(containerRef);
 
   const fetchImage = (name) => (name ? require(`../../assets/${name}`) : "");
 
   const handleMovieClick = (e, movie) => {
-    const endX = e.clientX - containerRef.current.offsetLeft;
-
-    if (startX === endX) {
+    if (!wasScrolling) {
       onMovieClick(movie);
     }
   };

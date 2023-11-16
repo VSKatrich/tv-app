@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 const useDraggingScroll = (containerRef) => {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
+  const [wasScrolling, setWasScrolling] = useState(false);
   const [scrollLeft, setScrollLeft] = useState(0);
 
   const handleMouseDown = (e) => {
@@ -24,8 +25,10 @@ const useDraggingScroll = (containerRef) => {
     }
   };
 
-  const handleMouseUp = () => {
+  const handleMouseUp = (e) => {
     setIsDragging(false);
+    const endX = e.clientX - containerRef.current.offsetLeft;
+    setWasScrolling(endX !== startX);
   };
 
   useEffect(() => {
@@ -39,7 +42,7 @@ const useDraggingScroll = (containerRef) => {
   return {
     handleMouseDown,
     handleMouseUp,
-    startX,
+    wasScrolling,
   };
 };
 
