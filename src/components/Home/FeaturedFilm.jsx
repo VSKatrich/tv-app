@@ -1,4 +1,3 @@
-import { useState } from "react";
 import style from "./Home.module.scss";
 
 const FeaturedFilm = ({ featuredFilm, showVideo, videoRef }) => {

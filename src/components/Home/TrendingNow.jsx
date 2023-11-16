@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+
 import style from "./Home.module.scss";
 
 const TrendingNow = ({ trendingNowFilms, onMovieClick }) => {
@@ -34,7 +35,7 @@ const TrendingNow = ({ trendingNowFilms, onMovieClick }) => {
 
   const handleOnClick = (e) => {
     const endX = e.clientX - adBannersRef.current.offsetLeft;
-    // event.target === event.currentTarget
+
     if (startX !== endX) {
       e.preventDefault();
       e.stopPropagation();

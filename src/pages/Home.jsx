@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState } from "react";
+
 import getFilms from "../api/api";
 import FeaturedFilm from "../components/Home/FeaturedFilm";
 import TrendingNow from "../components/Home/TrendingNow";
+
 import style from "./Home.module.scss";
+
+const LAST_CLICKED_MOVIE_STORAGE_KEY = "lastClickedMovieId";
 
 const Home = () => {
   const [featuredFilm, setFeaturedFilm] = useState(null);
@@ -14,7 +18,10 @@ const Home = () => {
   const fetchFilms = async () => {
     const response = await getFilms();
 
-    const storedMovieId = sessionStorage.getItem("lastClickedMovieId");
+    const storedMovieId = sessionStorage.getItem(
+      LAST_CLICKED_MOVIE_STORAGE_KEY
+    );
+
     const lastWatchedMovie = response.TrendingNow.find(
       (movie) => movie.Id === storedMovieId
     );
@@ -26,6 +33,7 @@ const Home = () => {
           ),
         ]
       : response.TrendingNow;
+
     setFeaturedFilm(response.Featured);
     setTrendingNowFilms(sortedTrendingNowFilms);
   };
@@ -41,7 +49,7 @@ const Home = () => {
   const onMovieClick = (movie) => {
     unsubscribe();
     setFeaturedFilm(movie);
-    sessionStorage.setItem("lastClickedMovieId", movie.Id);
+    sessionStorage.setItem(LAST_CLICKED_MOVIE_STORAGE_KEY, movie.Id);
 
     timeout.current = setTimeout(() => {
       setShowVideo(true);

@@ -2,7 +2,6 @@
 import data from "./data.json";
 
 // Define a mock fetch function that returns a Promise with the data
-
 const getFilms = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
