@@ -1,7 +1,7 @@
 import style from "./Home.module.scss";
 
 const FeaturedFilm = ({ featuredFilm, showVideo, videoRef }) => {
-  const image = require(`../../assets/${featuredFilm.CoverImage}`);
+  const coveImage = require(`../../assets/${featuredFilm.CoverImage}`);
   const titleImage = require(`../../assets/${featuredFilm.TitleImage}`);
 
   const durationInHours = Math.floor(featuredFilm.Duration / 3600);
@@ -24,7 +24,11 @@ const FeaturedFilm = ({ featuredFilm, showVideo, videoRef }) => {
           loop
         />
       ) : (
-        <img className={style.banner} src={image} alt={featuredFilm.title} />
+        <img
+          className={style.banner}
+          src={coveImage}
+          alt={featuredFilm.title}
+        />
       )}
 
       <div className={style.caption}>
