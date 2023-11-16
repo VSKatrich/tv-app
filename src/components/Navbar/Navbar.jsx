@@ -6,6 +6,7 @@ import watchLater from "../../assets/icons/Group 47.png";
 import genresIcon from "../../assets/icons/Group 53.png";
 import movesIcon from "../../assets/icons/Group 54.png";
 import tvShowsIcon from "../../assets/icons/Group 56.png";
+import user from "../../assets/user.png";
 
 const Navbar = () => {
   const selected = ({ isActive }) =>
@@ -14,12 +15,13 @@ const Navbar = () => {
   return (
     <div className={style.container}>
       <div className={style.profileInfo}>
-        <img src="" alt="name" />
+        <img src={user} alt="name" />
+        <p>Daniel</p>
       </div>
       <div className={style.menu}>
         <NavLink to="search" className={selected}>
           <img src={searchIcon} alt="search" />
-          <p>search</p>
+          <p>Search</p>
         </NavLink>
         <NavLink to="home" className={selected}>
           <img src={homeIcon} alt="plus" />
@@ -41,6 +43,12 @@ const Navbar = () => {
           <img src={watchLater} alt="watchLater" />
           <p>Watch Later</p>
         </NavLink>
+      </div>
+
+      <div className={style.bottomMenu}>
+        <p>language</p>
+        <p>get help</p>
+        <p>exit</p>
       </div>
     </div>
   );

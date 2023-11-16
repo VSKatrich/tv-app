@@ -3,7 +3,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 98px;
+  display: flex;
+  flex-direction: column;
+  width: 105px;
   height: 100%;
   background: linear-gradient(
     88deg,
@@ -16,24 +18,39 @@
   overflow-x: hidden;
 
   &:hover {
-    width: 40%;
+    width: 500px;
 
     .menuItemActive {
       border-radius: 8px;
       transition: none;
     }
+
+    .bottomMenu {
+      color: #858688;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .profileInfo {
+      visibility: visible;
+      transition: all 0.2s ease-in-out;
+    }
   }
 
   .profileInfo {
+    visibility: hidden;
     display: flex;
+    align-items: center;
+    gap: 12px;
     color: white;
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 22px;
+    transition: all 0.3s ease-in-out;
 
     img {
-      width: 50px;
-      height: 50px;
+      width: 55px;
       border-radius: 50%;
-      margin-bottom: 10px;
-      background-color: black;
+      margin-bottom: 20px;
       aspect-ratio: 1/1;
     }
   }
@@ -52,10 +69,10 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 14px 16px;
-    gap: 16px;
+    padding: 16px 17px;
+    gap: 24px;
     width: 100%;
-    max-width: 180px;
+    max-width: 200px;
     border-radius: 8px;
     color: white;
     text-decoration: none;
@@ -69,17 +86,45 @@
     }
 
     img {
-      width: 18px;
-      height: 18px;
+      width: 24px;
+      min-width: 24px;
+      height: 20px;
       aspect-ratio: 1/1;
+      object-fit: contain;
+      object-position: center;
+    }
+  }
+
+  .bottomMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+    margin-top: auto;
+    padding: 20px;
+    color: transparent;
+    transition: all 0.1s ease-in-out;
+
+    p {
+      font-size: 22px;
+      text-transform: uppercase;
+      transition: 150ms;
+      letter-spacing: 4px;
+      font-weight: 500;
+      cursor: pointer;
+
+      &:hover {
+        color: white;
+      }
     }
   }
 
   .menuItemActive {
     @extend .menuItem;
-    transition: all 0.6s ease-in-out;
+    transition: all 0.5s ease-in-out;
     background-color: #3b486d;
     border-radius: 50%;
-    font-weight: 500;
+    font-weight: 600;
   }
 }

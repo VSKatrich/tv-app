@@ -29,7 +29,7 @@ const FeaturedFilm = ({ featuredFilm, showVideo, videoRef }) => {
       )}
 
       <div className={style.caption}>
-        <p>{featuredFilm.Category}</p>
+        <p className={style.category}>{featuredFilm.Category}</p>
         <img src={titleImage} alt={featuredFilm.TitleImage} />
         <p>
           {featuredFilm.ReleaseYear} {featuredFilm.MpaRating} {duration}

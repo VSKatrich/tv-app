@@ -1,27 +1,27 @@
-.primary-btn {
-  background: #f1f1f1;
-  color: #000;
+.btn {
   border: none;
-  padding: 10px 24px;
+  padding: 12px 32px;
   border-radius: 24px;
   cursor: pointer;
   transition: all 0.15s ease-in-out;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.primary-btn {
+  @extend .btn;
+  background: #f1f1f1;
+  color: #000;
   &:hover {
     background-color: #f9a826;
   }
 }
 
 .secondary-btn {
+  @extend .btn;
   background: #2727f5;
   background: linear-gradient(159deg, #2727f5 0%, #001671 100%);
   color: #fff;
-  border: none;
-  padding: 10px 24px;
-  border-radius: 24px;
-  cursor: pointer;
-  transition: all 0.15s ease-in-out;
-  font-size: 1.4rem;
   &:hover {
     background-color: rgb(52, 52, 103);
   }

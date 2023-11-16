@@ -13,8 +13,21 @@ const Home = () => {
 
   const fetchFilms = async () => {
     const response = await getFilms();
+
+    const storedMovieId = sessionStorage.getItem("lastClickedMovieId");
+    const lastWatchedMovie = response.TrendingNow.find(
+      (movie) => movie.Id === storedMovieId
+    );
+    const sortedTrendingNowFilms = lastWatchedMovie
+      ? [
+          lastWatchedMovie,
+          ...response.TrendingNow.filter(
+            (movie) => movie.Id !== lastWatchedMovie.Id
+          ),
+        ]
+      : response.TrendingNow;
     setFeaturedFilm(response.Featured);
-    setTrendingNowFilms(response.TrendingNow);
+    setTrendingNowFilms(sortedTrendingNowFilms);
   };
 
   useEffect(() => {
@@ -28,6 +41,7 @@ const Home = () => {
   const onMovieClick = (movie) => {
     unsubscribe();
     setFeaturedFilm(movie);
+    sessionStorage.setItem("lastClickedMovieId", movie.Id);
 
     timeout.current = setTimeout(() => {
       setShowVideo(true);
