@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-import useDraggingScroll from "../hooks/useDraggingScroll";
+import useDraggingScroll from "../../hooks/useDraggingScroll";
 import style from "./Home.module.scss";
 
 const TrendingNow = ({ trendingNowFilms, onMovieClick }) => {
