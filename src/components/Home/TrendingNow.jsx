@@ -33,12 +33,11 @@ const TrendingNow = ({ trendingNowFilms, onMovieClick }) => {
     setIsDragging(false);
   };
 
-  const handleOnClick = (e) => {
+  const handleMovieClick = (e, movie) => {
     const endX = e.clientX - adBannersRef.current.offsetLeft;
 
-    if (startX !== endX) {
-      e.preventDefault();
-      e.stopPropagation();
+    if (startX === endX) {
+      onMovieClick(movie);
     }
   };
 
@@ -56,7 +55,6 @@ const TrendingNow = ({ trendingNowFilms, onMovieClick }) => {
 
       <div
         ref={adBannersRef}
-        onClick={handleOnClick}
         onMouseDown={handleMouseDown}
         onMouseLeave={handleMouseUp}
         onMouseUp={handleMouseUp}
@@ -65,7 +63,7 @@ const TrendingNow = ({ trendingNowFilms, onMovieClick }) => {
         {trendingNowFilms.map((film) => (
           <div
             key={film.Id}
-            onClick={() => onMovieClick(film)}
+            onClick={(e) => handleMovieClick(e, film)}
             className={style.film}
           >
             <img src={fetchImage(film.CoverImage)} alt="poster" />
