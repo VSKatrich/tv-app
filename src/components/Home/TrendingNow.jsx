@@ -1,6 +1,7 @@
 import { useRef } from "react";
 
 import useDraggingScroll from "../../hooks/useDraggingScroll";
+
 import style from "./Home.module.scss";
 
 const TrendingNow = ({ trendingNowFilms, onMovieClick }) => {
@@ -10,7 +11,7 @@ const TrendingNow = ({ trendingNowFilms, onMovieClick }) => {
 
   const fetchImage = (name) => (name ? require(`../../assets/${name}`) : "");
 
-  const handleMovieClick = (e, movie) => {
+  const handleMovieClick = (movie) => {
     if (!wasScrolling) {
       onMovieClick(movie);
     }
@@ -30,7 +31,7 @@ const TrendingNow = ({ trendingNowFilms, onMovieClick }) => {
         {trendingNowFilms.map((film) => (
           <div
             key={film.Id}
-            onClick={(e) => handleMovieClick(e, film)}
+            onClick={() => handleMovieClick(film)}
             className={style.film}
           >
             <img src={fetchImage(film.CoverImage)} alt="poster" />

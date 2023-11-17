@@ -16,26 +16,30 @@ const Home = () => {
   const timeout = useRef(null);
 
   const fetchFilms = async () => {
-    const response = await getFilms();
+    try {
+      const response = await getFilms();
 
-    const storedMovieId = sessionStorage.getItem(
-      LAST_CLICKED_MOVIE_STORAGE_KEY
-    );
+      const storedMovieId = sessionStorage.getItem(
+        LAST_CLICKED_MOVIE_STORAGE_KEY
+      );
 
-    const lastWatchedMovie = response.TrendingNow.find(
-      (movie) => movie.Id === storedMovieId
-    );
-    const sortedTrendingNowFilms = lastWatchedMovie
-      ? [
-          lastWatchedMovie,
-          ...response.TrendingNow.filter(
-            (movie) => movie.Id !== lastWatchedMovie.Id
-          ),
-        ]
-      : response.TrendingNow;
+      const lastWatchedMovie = response.TrendingNow.find(
+        (movie) => movie.Id === storedMovieId
+      );
+      const sortedTrendingNowFilms = lastWatchedMovie
+        ? [
+            lastWatchedMovie,
+            ...response.TrendingNow.filter(
+              (movie) => movie.Id !== lastWatchedMovie.Id
+            ),
+          ]
+        : response.TrendingNow;
 
-    setFeaturedFilm(response.Featured);
-    setTrendingNowFilms(sortedTrendingNowFilms);
+      setFeaturedFilm(response.Featured);
+      setTrendingNowFilms(sortedTrendingNowFilms);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
